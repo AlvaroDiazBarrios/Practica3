@@ -1,0 +1,17 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #007a33;
+    width: 100%;
+    height: 10%;
+    top: 0;
+}
+
+a{
+    text-decoration: none;
+    font-size: xx-large;
+    margin-top: 19px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: #FFF;
+}
