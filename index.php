@@ -1,4 +1,5 @@
-
+<?php include("header.php"); ?>
+<link rel="stylesheet" href="./css/cabecera.css">
 <html>
 	<head>
 		<meta charset="UTF-8"/>

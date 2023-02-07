@@ -1,6 +1,4 @@
-
 <?php
-
 	include 'conexionbd.php';
 
 	$error = FALSE;
@@ -10,10 +8,13 @@
     
 
 		if (isset($_POST['email'])) {
-			if (comprobar_introduccion_string_vacio($_POST['email']) == TRUE)
+			if ($_POST['email'] == "")
 			{
-				$error = TRUE;
-				$email = 'class="entrada_datos error"';
+                $error = TRUE;
+                echo "<script>
+                        var peticion = confirm('No ha introducido Correo');
+                        console.log(peticion);
+                    </script>";
 			}
 		}
 
@@ -22,64 +23,6 @@
 			comprobar_usuario($_POST['email']);
 			header("location:./index.php");
 		}
-	}
-	
-	function comprobar_introduccion_string_vacio($campo)
-    {
-		$error = comprobar_sql_injection($campo);
-		if ($error == FALSE)
-		{
-			if (strlen($campo) > 100)
-			{
-				$error = TRUE;
-			}
-		}
-        return $error;
-    }
-
-	function comprobar_sql_injection($valor)
-	{
-		$error = FALSE;
-		if (strpos($valor, "'") == TRUE) {
-			$error = TRUE;
-		}
-		else if (strpos($valor, '"') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, ';') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '<') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '>') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '/') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '&') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '--') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '/*') == TRUE)
-		{
-			$error = TRUE;
-		}
-		else if (strpos($valor, '*/') == TRUE)
-		{
-			$error = TRUE;
-		}
-		return $error;
 	}
 
 	function mostrar_campo($nombre)
