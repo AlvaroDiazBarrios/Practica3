@@ -75,7 +75,7 @@ if (isset($_POST['number'])) {
 ?>
 
 <!DOCTYPE html>
-<link rel="stylesheet" href="./css/juego.css">
+<link rel="stylesheet" href="css/juego.css">
 <html>
 <body>
     <div class ="main">

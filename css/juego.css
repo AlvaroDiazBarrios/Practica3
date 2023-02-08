@@ -52,6 +52,30 @@ div{
 	width: 100%;
 }
 
+div.main{position: absolute;
+		width: 80%;
+		padding: 3rem;
+		margin: 3rem;
+		border: 6px;
+		border-radius: 0.35rem;
+		background-color: rgba(247, 247, 238, 0.921);
+		border-style: double;}
+
+div.main h1{color: rgb(47, 51, 71);
+			text-align: center;
+			font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+			font-size: 3rem;}	
+
+div.main p{position: relative;
+		   text-align: center;
+		   color:black;
+		   font-family: 'Courier New', Courier, monospace;}
+
+div.main form{position:relative;
+			 left:33%;}	  
+
+div.main form input{}
+
 /* Caja que contiene el formulario de alta */
 #formulario_alta{
 	margin: 0 auto;
