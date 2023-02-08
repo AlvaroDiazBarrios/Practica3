@@ -42,10 +42,12 @@
 	function comprobar_usuario($email)
 	{
 		$con=conexion();
-		$sql='select count(*) from usuarios where email = ' . $email . ';';
-		$resultado=mysqli_query($con, $sql);
+		$sql="select count(*) as total from USUARIOS where email='" . $email ."';";
+        $resultado=mysqli_query($con, $sql);
+        $datos=mysqli_fetch_assoc($resultado);
+        $cantidad = $datos['total'];
         
-        if ($resultado == 0) {
+        if ($cantidad == 0) {
             $error = TRUE;
             echo "<script>
                         var peticion = confirm('Usuario inexistente');
@@ -53,7 +55,6 @@
                     </script>";
         }
         else {
-            if (isset($_GET['datosJugador'])) {
                 $jug = obtener_datos_usuario($email);
                 $_SESSION['nombre']=$jug['nombre'];
                 $_SESSION['email']=$jug['email'];
@@ -64,13 +65,21 @@
                 $_SESSION['perdidas']=$jug['IFNULL(perdidas,0)'];
                 $_SESSION['jugando']=false;
                 $_SESSION['sesionJuego']=true;
-                header("location:./juego.php");
-            }
-            else
-            {
-                header("location:./inicioSesion.php");
-            }
+                header("location: ./juego.php");
         }
+	}
+	
+	function obtener_datos_usuario($email)
+	{
+		$con=conexion();
+
+		$sql="select email, nombre, intentos, fecha_record, fecha_nacimiento, apellido, IFNULL(ganadas,0), IFNULL(perdidas,0) from USUARIOS where email = '" . $email . "';";
+		$resultado=mysqli_query($con, $sql);
+        $datos=mysqli_fetch_assoc($resultado);
+        
+		mysqli_close($con);
+		
+		return $datos;
 	}
 
 ?>
