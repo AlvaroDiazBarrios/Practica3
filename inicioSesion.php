@@ -1,5 +1,6 @@
 <?php
 	include 'conexionbd.php';
+    session_start();
 
 	$error = FALSE;
 	$email = 'class="entrada_datos"';
@@ -21,7 +22,6 @@
 		if ($error == FALSE)
 		{
 			comprobar_usuario($_POST['email']);
-			header("location:./index.php");
 		}
 	}
 
@@ -44,6 +44,33 @@
 		$con=conexion();
 		$sql='select count(*) from usuarios where email = ' . $email . ';';
 		$resultado=mysqli_query($con, $sql);
+        
+        if ($resultado == 0) {
+            $error = TRUE;
+            echo "<script>
+                        var peticion = confirm('Usuario inexistente');
+                        console.log(peticion);
+                    </script>";
+        }
+        else {
+            if (isset($_GET['datosJugador'])) {
+                $jug = obtener_datos_usuario($email);
+                $_SESSION['nombre']=$jug['nombre'];
+                $_SESSION['email']=$jug['email'];
+                $_SESSION['apellido']=$jug['apellido'];
+                $_SESSION['intentos']=$jug['intentos'];
+                $_SESSION['fecha_record'] = $jug['fecha_record'];
+                $_SESSION['victorias']=$jug['IFNULL(ganadas,0)'];
+                $_SESSION['perdidas']=$jug['IFNULL(perdidas,0)'];
+                $_SESSION['jugando']=false;
+                $_SESSION['sesionJuego']=true;
+                header("location:./juego.php");
+            }
+            else
+            {
+                header("location:./inicioSesion.php");
+            }
+        }
 	}
 
 ?>
