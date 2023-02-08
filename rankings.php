@@ -3,6 +3,7 @@
 session_start();
 
 include 'conexionbd.php';
+include 'header.php';
 // Verifica la conexión
 $conn = conexion();
 
