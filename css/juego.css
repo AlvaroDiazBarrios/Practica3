@@ -53,13 +53,18 @@ div{
 }
 
 div.main{position: absolute;
-		width: 80%;
+		width: 85%;
 		padding: 3rem;
 		margin: 3rem;
 		border: 6px;
 		border-radius: 0.35rem;
 		background-color: rgba(247, 247, 238, 0.921);
-		border-style: double;}
+		border-style: double;
+		display: flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		text-align: center;}
 
 div.main h1{color: rgb(47, 51, 71);
 			text-align: center;
@@ -71,10 +76,26 @@ div.main p{position: relative;
 		   color:black;
 		   font-family: 'Courier New', Courier, monospace;}
 
-div.main form{position:relative;
-			 left:33%;}	  
+div.main form{/*
+				position:relative;
+				left:33%;*/
+				position: relative;
+				width: 100%;
+				max-width: 600px;
+				padding:1rem;
+				margin: 2rem;
+				display: flex;
+				flex-direction:column;
+				justify-content:center;
+				align-items:center;
+				text-align: center;
+			}	  
 
-div.main form input{}
+div.main form input{/**/
+					width: 50%;
+					height: 30px;
+					margin: 0.5rem;
+				}
 
 /* Caja que contiene el formulario de alta */
 #formulario_alta{
